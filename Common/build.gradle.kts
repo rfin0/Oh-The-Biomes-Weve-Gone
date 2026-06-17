@@ -1,5 +1,5 @@
 architectury {
-    common("forge", "fabric", "neoforge")
+    common("fabric", "neoforge")
     platformSetupLoomIde()
 }
 
@@ -10,12 +10,12 @@ loom.accessWidenerPath.set(file("src/main/resources/biomeswevegone.accesswidener
 sourceSets.main.get().resources.srcDir("src/main/generated/resources")
 
 dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${project.properties["fabric_loader_version"]}")
+    implementation("net.fabricmc:fabric-loader:${project.properties["fabric_loader_version"]}")
 
-    modImplementation("com.github.glitchfiend:TerraBlender-common:$minecraftVersion-${project.properties["terrablender_version"]}")
-    modImplementation("dev.corgitaco:Corgilib-Fabric:$minecraftVersion-${project.properties["corgilib_version"]}")
-    modImplementation("dev.corgitaco:Oh-The-Trees-Youll-Grow-common:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
-    modImplementation("software.bernie.geckolib:geckolib-common-$minecraftVersion:${project.properties["geckolib_version"]}")
+    implementation("com.github.glitchfiend:TerraBlender-common:$minecraftVersion-${project.properties["terrablender_version"]}")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-26.1:${project.properties["ohthetreesyoullgrow_version"]}")
+//    implementation("dev.corgitaco:Oh-The-Trees-Youll-Grow-common:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
+    implementation("com.geckolib:geckolib-common-$minecraftVersion:${project.properties["geckolib_version"]}")
 
-    modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
+    compileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
 }

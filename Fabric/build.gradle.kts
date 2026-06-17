@@ -30,23 +30,23 @@ configurations {
 loom.accessWidenerPath.set(project(":Common").loom.accessWidenerPath)
 
 dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${project.properties["fabric_loader_version"]}")
-    modApi("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_api_version"]}+$minecraftVersion")
+    implementation("net.fabricmc:fabric-loader:${project.properties["fabric_loader_version"]}")
+    api("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_api_version"]}+$minecraftVersion")
 
-    "common"(project(":Common", "namedElements")) { isTransitive = false }
+    "common"(project(":Common")) { isTransitive = false }
     "shadowBundle"(project(":Common", "transformProductionFabric"))
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.properties["devauth_version"]}")
+    localRuntime("me.djtheredstoner:DevAuth-fabric:${project.properties["devauth_version"]}")
 
-    modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
-    modApi("dev.corgitaco:Corgilib-Fabric:$minecraftVersion-${project.properties["corgilib_version"]}")
-    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
-    modApi("software.bernie.geckolib:geckolib-fabric-$minecraftVersion:${project.properties["geckolib_version"]}")
-    modApi("me.lucko:fabric-permissions-api:0.3.1")
+    api("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
+//    api("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-26.1:${project.properties["ohthetreesyoullgrow_version"]}")
+    api("com.geckolib:geckolib-fabric-$minecraftVersion:${project.properties["geckolib_version"]}")
+    api("me.lucko:fabric-permissions-api:0.7.0")
 
-    modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
-    modLocalRuntime("mcp.mobius.waila:wthit:fabric-${project.properties["WTHIT"]}")
-    modLocalRuntime("lol.bai:badpackets:fabric-${project.properties["badPackets"]}")
+    compileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
+    localRuntime("mcp.mobius.waila:wthit:fabric-${project.properties["WTHIT"]}")
+    localRuntime("lol.bai:badpackets:fabric-${project.properties["badPackets"]}")
 }
 
 tasks {
@@ -63,13 +63,7 @@ tasks {
             "architectury.common.json", ".cache/**", "data/biomeswevegone/neoforge/**",
             "data/neoforge/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
-        archiveClassifier.set("dev-shadow")
-    }
-
-    remapJar {
-        injectAccessWidener.set(true)
-        inputFile.set(shadowJar.get().archiveFile)
-        dependsOn(shadowJar)
+        archiveClassifier.set(null)
     }
 }
 

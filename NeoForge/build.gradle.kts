@@ -43,22 +43,22 @@ loom {
 dependencies {
     neoForge("net.neoforged:neoforge:${project.properties["neoforge_version"]}")
 
-    "common"(project(":Common", "namedElements")) { isTransitive = false }
+    "common"(project(":Common")) { isTransitive = false }
     "shadowBundle"(project(":Common", "transformProductionNeoForge"))
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${project.properties["devauth_version"]}")
+    localRuntime("me.djtheredstoner:DevAuth-neoforge:${project.properties["devauth_version"]}")
 
-    modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
-    modApi("dev.corgitaco:Corgilib-NeoForge:$minecraftVersion-${project.properties["corgilib_version"]}")
-    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
-    modApi("software.bernie.geckolib:geckolib-neoforge-$minecraftVersion:${project.properties["geckolib_version"]}")
-    compileOnly("net.luckperms:api:5.4")
+    api("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
+//    api("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-26.1:${project.properties["ohthetreesyoullgrow_version"]}")
+    api("com.geckolib:geckolib-neoforge-$minecraftVersion:${project.properties["geckolib_version"]}")
+    compileOnly("net.luckperms:api:5.5")
 
-    modCompileOnly("mcp.mobius.waila:wthit-api:neo-${project.properties["WTHIT"]}")
-    modLocalRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")
-    modLocalRuntime("lol.bai:badpackets:neo-${project.properties["badPackets"]}")
+    compileOnly("mcp.mobius.waila:wthit-api:neo-${project.properties["WTHIT"]}")
+    localRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")
+    localRuntime("lol.bai:badpackets:neo-${project.properties["badPackets"]}")
 
-    modApi("com.github.glitchfiend:SereneSeasons-neoforge:$minecraftVersion-21.11.0.1")
+    api("com.github.glitchfiend:SereneSeasons-neoforge:$minecraftVersion-26.1.2.0.3")
 }
 
 tasks {
@@ -74,13 +74,7 @@ tasks {
         exclude("net/potionstudios/biomeswevegone/neoforge/datagen/**",
             "architectury.common.json", ".cache/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
-        archiveClassifier.set("dev-shadow")
-    }
-
-    remapJar {
-        inputFile.set(shadowJar.get().archiveFile)
-        dependsOn(shadowJar)
-        atAccessWideners.add("biomeswevegone.accesswidener")
+        archiveClassifier.set(null)
     }
 }
 
