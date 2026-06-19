@@ -50,7 +50,7 @@ dependencies {
 
     api("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
 //    api("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
-    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-26.1:${project.properties["ohthetreesyoullgrow_version"]}")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-$minecraftVersion:${project.properties["ohthetreesyoullgrow_version"]}")
     api("com.geckolib:geckolib-neoforge-$minecraftVersion:${project.properties["geckolib_version"]}")
     compileOnly("net.luckperms:api:5.5")
 
@@ -80,7 +80,7 @@ tasks {
 
 publisher {
     setLoaders(ModLoader.NEOFORGE)
-    curseDepends.required.set(mutableListOf("terrablender-neoforge", "geckolib", "corgilib", "oh-the-trees-youll-grow"))
-    modrinthDepends.required.set(mutableListOf("terrablender", "geckolib", "corgilib", "oh-the-trees-youll-grow"))
+    curseDepends.required.set(mutableListOf("terrablender-neoforge", "geckolib", "oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("terrablender", "geckolib", "oh-the-trees-youll-grow"))
     curseDepends.optional.set(mutableListOf("wthit-forge"))
 }

@@ -40,7 +40,7 @@ dependencies {
 
     api("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
 //    api("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
-    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-26.1:${project.properties["ohthetreesyoullgrow_version"]}")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-common-$minecraftVersion:${project.properties["ohthetreesyoullgrow_version"]}")
     api("com.geckolib:geckolib-fabric-$minecraftVersion:${project.properties["geckolib_version"]}")
     api("me.lucko:fabric-permissions-api:0.7.0")
 
@@ -69,7 +69,7 @@ tasks {
 
 publisher {
     setLoaders(ModLoader.FABRIC, ModLoader.QUILT)
-    curseDepends.required.set(mutableListOf("fabric-api", "terrablender-fabric", "geckolib", "corgilib", "oh-the-trees-youll-grow"))
-    modrinthDepends.required.set(mutableListOf("fabric-api", "terrablender", "geckolib", "corgilib", "oh-the-trees-youll-grow"))
+    curseDepends.required.set(mutableListOf("fabric-api", "terrablender-fabric", "geckolib", "oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("fabric-api", "terrablender", "geckolib", "oh-the-trees-youll-grow"))
     curseDepends.optional.set(mutableListOf("wthit"))
 }
